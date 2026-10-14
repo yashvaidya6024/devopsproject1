@@ -1,1 +1,2 @@
-backups/*n!backups/.gitkeep
+backups/*
+!backups/.gitkeep
