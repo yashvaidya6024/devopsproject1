@@ -1,38 +1,37 @@
 
 #!/usr/bin/env bash
 
-# Stop if a command fails or an undefined variable is used.
 set -euo pipefail
 
-# Find the directory containing this script.
+# Locate the project folder
 PROJECT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-# Define the source and backup folders.
+# Define source and backup folders
 SOURCE_DIR="$PROJECT_DIR/source"
 BACKUP_ROOT="$PROJECT_DIR/backups"
 
-# Generate a timestamp for the backup folder.
+# Create a timestamp
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
 BACKUP_DIR="$BACKUP_ROOT/backup_$TIMESTAMP"
 
-# Check whether the source folder exists.
+# Check whether the source folder exists
 if [[ ! -d "$SOURCE_DIR" ]]; then
-    echo "ERROR: Source folder does not exist: $SOURCE_DIR"
+    echo "ERROR: Source folder does not exist."
     exit 1
 fi
 
-# Check whether the source folder contains any files.
+# Check whether the source folder contains files
 if [[ -z "$(find "$SOURCE_DIR" -type f -print -quit)" ]]; then
     echo "ERROR: Source folder contains no files."
     exit 1
 fi
 
-# Create the backup directory.
+# Create the backup folder
 mkdir -p "$BACKUP_DIR"
 
-# Copy the source folder contents to the backup.
+# Copy all source files and subfolders
 cp -a "$SOURCE_DIR/." "$BACKUP_DIR/"
 
-# Display the result.
+# Display the result
 echo "Backup completed successfully!"
 echo "Backup location: $BACKUP_DIR"
