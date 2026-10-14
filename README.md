@@ -1,5 +1,3 @@
-
-
 \# Automated Folder Backup
 
 
@@ -93,6 +91,18 @@ automated-backup/
 \- Add file integrity verification.
 
 \- Store copies on a separate drive.
+
+
+
+
+## Git Workflow
+
+This project uses Git branches to manage changes safely.
+
+- `main`: Stable version of the project.
+- `feature/add-project-info`: Branch for adding project documentation.
+
+Changes are committed on the feature branch before being merged into main.
 
 
 
